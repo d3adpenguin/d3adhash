@@ -1,2 +1,2 @@
 # d3adhash
-Automated Hashcat Framework
+Automated Pytho3 Hashcat Framework

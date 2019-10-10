@@ -2,6 +2,8 @@ import os
 def prRed(skk): print("\033[91m {}\033[00m" .format(skk)) 
 def prGreen(skk): print("\033[92m {}\033[00m" .format(skk)) 
 def prPurple(skk): print("\033[95m {}\033[00m" .format(skk)) 
+def prCyan(skk): print("\033[96m {}\033[00m" .format(skk)) 
+def prYellow(skk): print("\033[93m {}\033[00m" .format(skk)) 
 prPurple("""
 
              .                 ::                                 :,            
@@ -154,7 +156,9 @@ if __name__ == "__main__":
         wordlist=wordlist,
     )
 
-    prRed(f"\nTo run this hashcat in the future, use the following command:\n    {command}")
     os.system(command)
-    prGreen(f"\nTo see results run:\n {command} --show")
+    prYellow(f"\n Executed:\n {command}")
+    prCyan(f"\nTo see results Run:\n {command} --show")
+    prCyan(f"\nTo save results Run:\n {command} -o <outputname>.txt")
+
     print("\nExecution complete. Goodbye.")
