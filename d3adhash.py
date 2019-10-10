@@ -1,5 +1,8 @@
 import os
-print("""
+def prRed(skk): print("\033[91m {}\033[00m" .format(skk)) 
+def prGreen(skk): print("\033[92m {}\033[00m" .format(skk)) 
+def prPurple(skk): print("\033[95m {}\033[00m" .format(skk)) 
+prPurple("""
 
              .                 ::                                 :,            
            .                 .                .                      .          
@@ -68,10 +71,7 @@ print("---------No-Salts------------")
 print("-----Hash Cat Utility--------")
 print("---All results in krakd.txt---")
 print("-----------------------------")
-
-HASHCAT_BASE_COMMAND = "hashcat -a 0 -m {type} {hash} {wordlist} --force --show > {outfile}"
-OUTFILE_NAME = "kracd.txt"
-
+HASHCAT_BASE_COMMAND = "hashcat -a 0 -m {type} {hash} {wordlist} --force"
 options = [
     {
         "name": "MD5 Optimized (<27 chars)",
@@ -130,7 +130,7 @@ options = [
 if __name__ == "__main__":
     # Generate menu and prompt user for option
     for count, option in enumerate(options, 1):
-        print(f"[{count}] {option['name']}")
+        prGreen(f"[{count}] {option['name']}")
 
     while True:
         selection = input("Enter selection: ")
@@ -145,15 +145,16 @@ if __name__ == "__main__":
 
     # prompt user for hash and wordlist
     challenge = input("Hash? ")
+    prRed("Kali Default: /usr/share/wordlists/rockyou.txt")
     wordlist = input("Wordlist path? ")
 
     command = HASHCAT_BASE_COMMAND.format(
         type=selectedItem['hashType'],
         hash=challenge,
         wordlist=wordlist,
-        outfile=OUTFILE_NAME
     )
 
-    print(f"\nTo run this hashcat in the future, use the following command:\n    {command}")
+    prRed(f"\nTo run this hashcat in the future, use the following command:\n    {command}")
     os.system(command)
+    prGreen(f"\nTo see results run:\n {command} --show")
     print("\nExecution complete. Goodbye.")
